@@ -5,7 +5,7 @@
   "type": "magento2-module",
   "require": {
     "magento/framework": "*",
-      "phpunit/phpunit": "4.8.*"
+      "phpunit/phpunit": "*"
   },
   "license": [
     "OSL-3.0"
