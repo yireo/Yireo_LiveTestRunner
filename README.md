@@ -10,4 +10,7 @@ Create your own tests within a folder `Test/Live` (or something else). Next, run
 
 Done.
 
-Tests could be extending upon the parent classes `\Yireo\LiveTestRunner\TestCase\CatalogTestCase` and `\Yireo\LiveTestRunner\TestCase\GenericTestCase`, but only if you want to.
+Tests could be extending upon the parent classes `\Yireo\LiveTestRunner\TestCase\CatalogTestCase` and
+`\Yireo\LiveTestRunner\TestCase\GenericTestCase`, but only if you want to: You can make any assertions
+using any library out there. This module simply makes sure the Magento bootstrap of your actual dev
+environment is run.
