@@ -18,7 +18,7 @@ class RunLiveTests extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $folder = trim((string)$input->getArgument('folder'));
+        $folder = trim((string)$input->getArgument('folder'), " \n\r\t\v\0");
         if (!is_dir($folder)) {
             $output->writeln('Not a valid folder: ' . $folder);
             return Command::FAILURE;
