@@ -2,6 +2,7 @@
 
 namespace Yireo\LiveTestRunner\Test\Integration\Command;
 
+use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Framework\App\State as AppState;
 use Magento\TestFramework\Helper\Bootstrap;
 use PHPUnit\Framework\TestCase;
@@ -14,7 +15,7 @@ class RunLiveTestsTest extends TestCase
     public function testRefusesToRunInProductionMode(): void
     {
         $commandTester = $this->getCommandTester(AppState::MODE_PRODUCTION);
-        $result = $commandTester->execute(['folder' => BP]);
+        $result = $commandTester->execute(['folder' => $this->getRoot()]);
 
         $this->assertSame(Command::FAILURE, $result);
         $this->assertStringContainsString('Refusing to run', $commandTester->getDisplay());
@@ -33,7 +34,7 @@ class RunLiveTestsTest extends TestCase
     public function testRejectsFolderOutsideMagentoRoot(): void
     {
         $commandTester = $this->getCommandTester(AppState::MODE_DEVELOPER);
-        $folder = dirname((string)realpath(BP));
+        $folder = dirname((string)realpath($this->getRoot()));
         $result = $commandTester->execute(['folder' => $folder]);
 
         $this->assertSame(Command::FAILURE, $result);
@@ -47,6 +48,11 @@ class RunLiveTestsTest extends TestCase
 
         $this->assertSame(Command::FAILURE, $result);
         $this->assertStringContainsString('Not a valid folder: <error>foo</error>', $commandTester->getDisplay());
+    }
+
+    private function getRoot(): string
+    {
+        return Bootstrap::getObjectManager()->get(DirectoryList::class)->getRoot();
     }
 
     private function getCommandTester(string $mode): CommandTester
