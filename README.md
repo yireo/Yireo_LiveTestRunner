@@ -11,12 +11,24 @@ This module allows you to run PHPUnit-based *live tests* in Magento 2. Normally,
 
 A live test is nothing more than a PHPUnit test, but including the Magento application (including database, caching and other) as a bootstrap. With this, you can fetch products from the database and guarantee that their
 
+## Installation
+Install this module as a development dependency, so that it (and PHPUnit) does not end up in production deployments:
+
+    composer require --dev yireo/magento2-live-test-runner
+
 ## Usage
 Create your own tests within a folder `Test/Live` (or something else). Next, run the following command, pointing towards your testing folder:
 
     bin/magento yireo_livetest:run app/code/Foo/Bar/Test/Live
 
 Done.
+
+The testing folder needs to be located within the Magento root folder.
+
+## Production mode
+Live tests run with full access to the Magento application and its database, so they are able to modify or delete real data. Therefore, the command refuses to run when Magento is in production mode. If you are sure what you are doing (for instance, on a copy of a production site), add the `--force` flag:
+
+    bin/magento yireo_livetest:run app/code/Foo/Bar/Test/Live --force
 
 Tests could be extending upon the parent classes `\Yireo\LiveTestRunner\TestCase\CatalogTestCase` and
 `\Yireo\LiveTestRunner\TestCase\GenericTestCase`, but only if you want to: You can make any assertions
