@@ -5,5 +5,34 @@
         "Magento_Catalog"
     ],
     "phpcs_severity": "9",
-    "phpstan_level": "5"
+    "phpstan_level": "5",
+    "php_versions": [
+        "8.1",
+        "8.2",
+        "8.3",
+        "8.4"
+    ],
+    "skip_magento_versions": [],
+    "skip_css_utils": false,
+    "modules": [
+        "Magento_AdminNotification",
+        "Magento_Catalog",
+        "Magento_Cms",
+        "Magento_Csp",
+        "Magento_Customer",
+        "Magento_Directory",
+        "Magento_Eav",
+        "Magento_Indexer",
+        "Magento_MediaGalleryUiApi",
+        "Magento_Store",
+        "Magento_Theme",
+        "Magento_Variable"
+    ],
+    "components": [],
+    "config": [],
+    "tests": {
+        "unit": 0,
+        "integration": 4,
+        "functional": 0
+    }
 }
